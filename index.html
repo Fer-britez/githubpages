@@ -1,1 +1,67 @@
-<h1>GitHub Page</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asistencia por Grupos de Voces</title>
+</head>
+
+<body>
+  <h2>Asistencia por Grupos de Voces</h2>
+
+  <div class="grupo" data-grupo="Primera">
+    <h3>Primera</h3>
+    <label><input type="checkbox" value="Liz"> Liz</label>
+    <label><input type="checkbox" value="Analia"> Analia</label>
+  </div>
+
+  <div class="grupo" data-grupo="Segunda">
+    <h3>Segunda</h3>
+    <label><input type="checkbox" value="Nadira"> Nadira</label>
+    <label><input type="checkbox" value="Araceli"> Araceli</label>
+  </div>
+
+  <div class="grupo" data-grupo="Tenor">
+    <h3>Tenor</h3>
+    <label><input type="checkbox" value="Enma"> Enma</label>
+    <label><input type="checkbox" value="Dani"> Dani</label>
+  </div>
+
+  <div class="grupo" data-grupo="Bajo">
+    <h3>Bajo</h3>
+    <label><input type="checkbox" value="Fer"> Fer</label>
+    <label><input type="checkbox" value="Maicol"> Maicol</label>
+  </div>
+
+
+
+  <button onclick="copiarAsistencia()">Copiar asistencia</button>
+
+  <script>
+    function copiarAsistencia() {
+      const grupos = document.querySelectorAll('.grupo');
+      let textoFinal = '';
+
+      grupos.forEach(grupo => {
+        const nombreGrupo = grupo.getAttribute('data-grupo');
+        const seleccionados = grupo.querySelectorAll('input[type="checkbox"]:checked');
+        if (seleccionados.length > 0) {
+          textoFinal += nombreGrupo + ':\n';
+          seleccionados.forEach(cb => {
+            textoFinal += '- ' + cb.value + '\n';
+          });
+          textoFinal += '\n';
+        }
+      });
+
+      if (textoFinal.trim()) {
+        navigator.clipboard.writeText(textoFinal)
+          .then(() => alert('Asistencia copiada:\n\n' + textoFinal))
+          .catch(err => alert('Error al copiar: ' + err));
+      } else {
+        alert('No has marcado ningún nombre.');
+      }
+    }
+  </script>
+</body>
+</html>
