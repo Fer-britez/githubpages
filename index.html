@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Asistencia por Grupos de Voces</title>
-</head>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -76,7 +75,7 @@
       background-color: #218838;
     }
   </style>
-  
+</head>
 <body>
   <h2>Asistencia por Grupos de Voces</h2>
 
@@ -103,8 +102,6 @@
     <label><input type="checkbox" value="Fer"> Fer</label>
     <label><input type="checkbox" value="Maicol"> Maicol</label>
   </div>
-
-
 
   <button onclick="copiarAsistencia()">Copiar asistencia</button>
 
@@ -133,6 +130,28 @@
         alert('No has marcado ningún nombre.');
       }
     }
+
+    // Estilo dinámico para checkboxes
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    function actualizarEstilos() {
+      checkboxes.forEach(cb => {
+        const label = cb.parentElement;
+        if (cb.checked) {
+          label.classList.add('seleccionado');
+          label.classList.remove('no-seleccionado');
+        } else {
+          label.classList.remove('seleccionado');
+          label.classList.add('no-seleccionado');
+        }
+      });
+    }
+
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', actualizarEstilos);
+    });
+
+    // Inicializa colores al cargar
+    actualizarEstilos();
   </script>
 </body>
 </html>
