@@ -22,6 +22,7 @@
     h3 {
       color: #444;
       margin-bottom: 10px;
+      cursor: pointer;
     }
 
     .grupo {
@@ -74,53 +75,98 @@
     button:hover {
       background-color: #218838;
     }
+
+    /* Ocultar las secciones inicialmente */
+    .contenido-grupo {
+      display: none;
+    }
+
+    .grupo.abierto .contenido-grupo {
+      display: block;
+    }
+
+    .grupo h3 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .grupo h3::after {
+      content: "▶"; /* Triángulo hacia la derecha */
+      font-size: 20px;
+      margin-left: 10px;
+    }
+
+    .grupo.abierto h3::after {
+      content: "▼"; /* Triángulo hacia abajo */
+    }
   </style>
 </head>
 <body>
   <h2>Asistencia por Grupos de Voces</h2>
 
   <div class="grupo" data-grupo="Primera">
-    <h3>Primera</h3>
-    <label><input type="checkbox" value="Liz"> Liz</label>
-    <label><input type="checkbox" value="Analia"> Analia</label>
+    <h3 onclick="toggleGrupo(this)">Primera</h3>
+    <div class="contenido-grupo">
+      <label><input type="checkbox" value="Liz"> Liz</label>
+      <label><input type="checkbox" value="Analia"> Analia</label>
+    </div>
   </div>
 
   <div class="grupo" data-grupo="Segunda">
-    <h3>Segunda</h3>
-    <label><input type="checkbox" value="Nadira"> Nadira</label>
-    <label><input type="checkbox" value="Araceli"> Araceli</label>
+    <h3 onclick="toggleGrupo(this)">Segunda</h3>
+    <div class="contenido-grupo">
+      <label><input type="checkbox" value="Nadira"> Nadira</label>
+      <label><input type="checkbox" value="Araceli"> Araceli</label>
+    </div>
   </div>
 
   <div class="grupo" data-grupo="Tenor">
-    <h3>Tenor</h3>
-    <label><input type="checkbox" value="Enma"> Enma</label>
-    <label><input type="checkbox" value="Dani"> Dani</label>
+    <h3 onclick="toggleGrupo(this)">Tenor</h3>
+    <div class="contenido-grupo">
+      <label><input type="checkbox" value="Enma"> Enma</label>
+      <label><input type="checkbox" value="Dani"> Dani</label>
+    </div>
   </div>
 
   <div class="grupo" data-grupo="Bajo">
-    <h3>Bajo</h3>
-    <label><input type="checkbox" value="Fer"> Fer</label>
-    <label><input type="checkbox" value="Maicol"> Maicol</label>
+    <h3 onclick="toggleGrupo(this)">Bajo</h3>
+    <div class="contenido-grupo">
+      <label><input type="checkbox" value="Fer"> Fer</label>
+      <label><input type="checkbox" value="Maicol"> Maicol</label>
+    </div>
   </div>
 
   <button onclick="copiarAsistencia()">Copiar asistencia</button>
 
   <script>
+    function toggleGrupo(element) {
+      const grupo = element.parentElement;
+      grupo.classList.toggle('abierto');
+    }
+
     function copiarAsistencia() {
       const grupos = document.querySelectorAll('.grupo');
-      let textoFinal = '';
+      let textoFinal = '**Asistencia del Día**\n\n'; // Título en negrita
 
       grupos.forEach(grupo => {
         const nombreGrupo = grupo.getAttribute('data-grupo');
         const seleccionados = grupo.querySelectorAll('input[type="checkbox"]:checked');
         if (seleccionados.length > 0) {
-          textoFinal += nombreGrupo + ':\n';
+          textoFinal += `**${nombreGrupo}:**\n`;
           seleccionados.forEach(cb => {
-            textoFinal += '- ' + cb.value + '\n';
+            textoFinal += `- ${cb.value}\n`;
           });
           textoFinal += '\n';
         }
       });
+
+      // Agregar fecha actual al final
+      const fecha = new Date();
+      const dia = String(fecha.getDate()).padStart(2, '0');
+      const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Enero = 0
+      const anio = fecha.getFullYear();
+      textoFinal += `📅 Fecha: ${dia}/${mes}/${anio}`;
 
       if (textoFinal.trim()) {
         navigator.clipboard.writeText(textoFinal)
