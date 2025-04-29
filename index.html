@@ -4,116 +4,105 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Asistencia por Grupos de Voces</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f2f5;
-      padding: 30px;
-      max-width: 700px;
+      padding: 20px;
+      max-width: 600px;
       margin: auto;
+      background: linear-gradient(to bottom right, #f0f4f8, #ffffff);
     }
 
     h2 {
       text-align: center;
       color: #2c3e50;
       margin-bottom: 30px;
-      font-size: 26px;
     }
 
     .grupo {
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      overflow: hidden;
+      background: white;
+      padding: 0;
       margin-bottom: 20px;
-      transition: box-shadow 0.3s ease;
-    }
-
-    .grupo:hover {
-      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      overflow: hidden;
     }
 
     .titulo-grupo {
+      cursor: pointer;
       background-color: #3498db;
       color: white;
-      padding: 15px 20px;
-      cursor: pointer;
-      user-select: none;
+      padding: 14px 16px;
       font-size: 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-weight: 600;
-      transition: background-color 0.3s;
     }
 
-    .titulo-grupo:hover {
-      background-color: #2980b9;
-    }
-
-    .titulo-grupo span {
-      font-size: 20px;
+    .material-icons {
+      font-size: 24px;
       transition: transform 0.3s;
     }
 
-    .contenido-grupo {
-      padding: 15px 20px;
+    .contenedor-miembros {
+      padding: 15px;
       display: none;
-      border-top: 1px solid #ddd;
-      background-color: #fcfcfc;
     }
 
-    .grupo label {
+    .contenedor-miembros label {
       display: flex;
       align-items: center;
-      margin: 10px 0;
+      margin: 6px 0;
       font-size: 16px;
-      padding: 8px 12px;
-      border-radius: 8px;
-      transition: background-color 0.3s, color 0.3s;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: background-color 0.3s;
     }
 
-    .grupo input[type="checkbox"] {
-      margin-right: 12px;
+    .contenedor-miembros input[type="checkbox"] {
+      margin-right: 10px;
       width: 18px;
       height: 18px;
     }
 
-    .grupo label.seleccionado {
-      background-color: #d1f2eb;
-      color: #145a32;
+    .seleccionado {
+      background-color: #d4edda;
+      color: #155724;
     }
 
-    .grupo label.no-seleccionado {
-      background-color: #f9d6d5;
-      color: #922b21;
+    .no-seleccionado {
+      background-color: #f8d7da;
+      color: #721c24;
     }
 
     button {
-      padding: 15px 25px;
-      font-size: 17px;
+      padding: 14px 20px;
+      font-size: 16px;
       width: 100%;
-      background-color: #2ecc71;
+      background-color: #28a745;
       color: white;
       border: none;
       border-radius: 10px;
       cursor: pointer;
       margin-top: 30px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
     }
 
     button:hover {
-      background-color: #27ae60;
+      background-color: #218838;
     }
   </style>
 </head>
 <body>
+
   <h2>Asistencia por Grupos de Voces</h2>
 
-  <div class="grupo" data-grupo="Soprano">
-    <div class="titulo-grupo" onclick="toggleGrupo(this)">Soprano <span>⯈</span></div>
-    <div class="contenido-grupo">
+  <!-- Grupos -->
+  <div class="grupo">
+    <div class="titulo-grupo" onclick="toggleGrupo(this)">
+      Soprano <span class="material-icons">expand_more</span>
+    </div>
+    <div class="contenedor-miembros">
       <label><input type="checkbox" value="Liz"> Liz</label>
       <label><input type="checkbox" value="Analia"> Analia</label>
       <label><input type="checkbox" value="Debora"> Debora</label>
@@ -125,9 +114,11 @@
     </div>
   </div>
 
-  <div class="grupo" data-grupo="Contralto">
-    <div class="titulo-grupo" onclick="toggleGrupo(this)">Contralto <span>⯈</span></div>
-    <div class="contenido-grupo">
+  <div class="grupo">
+    <div class="titulo-grupo" onclick="toggleGrupo(this)">
+      Contralto <span class="material-icons">expand_more</span>
+    </div>
+    <div class="contenedor-miembros">
       <label><input type="checkbox" value="Yamila"> Yamila</label>
       <label><input type="checkbox" value="Ana"> Ana</label>
       <label><input type="checkbox" value="Belen"> Belen</label>
@@ -139,9 +130,11 @@
     </div>
   </div>
 
-  <div class="grupo" data-grupo="Tenor">
-    <div class="titulo-grupo" onclick="toggleGrupo(this)">Tenor <span>⯈</span></div>
-    <div class="contenido-grupo">
+  <div class="grupo">
+    <div class="titulo-grupo" onclick="toggleGrupo(this)">
+      Tenor <span class="material-icons">expand_more</span>
+    </div>
+    <div class="contenedor-miembros">
       <label><input type="checkbox" value="Enmanuel"> Enmanuel</label>
       <label><input type="checkbox" value="Daniel"> Daniel</label>
       <label><input type="checkbox" value="Jeremias"> Jeremias</label>
@@ -150,9 +143,11 @@
     </div>
   </div>
 
-  <div class="grupo" data-grupo="Bajo">
-    <div class="titulo-grupo" onclick="toggleGrupo(this)">Bajo <span>⯈</span></div>
-    <div class="contenido-grupo">
+  <div class="grupo">
+    <div class="titulo-grupo" onclick="toggleGrupo(this)">
+      Bajo <span class="material-icons">expand_more</span>
+    </div>
+    <div class="contenedor-miembros">
       <label><input type="checkbox" value="Fernando"> Fernando</label>
       <label><input type="checkbox" value="Maicol"> Maicol</label>
       <label><input type="checkbox" value="Samuel"> Samuel</label>
@@ -164,18 +159,25 @@
   <button onclick="copiarAsistencia()">Copiar asistencia</button>
 
   <script>
+    function toggleGrupo(elemento) {
+      const contenedor = elemento.nextElementSibling;
+      const icono = elemento.querySelector('.material-icons');
+      const estaAbierto = contenedor.style.display === 'block';
+
+      contenedor.style.display = estaAbierto ? 'none' : 'block';
+      icono.textContent = estaAbierto ? 'expand_more' : 'expand_less';
+    }
+
     function copiarAsistencia() {
       const grupos = document.querySelectorAll('.grupo');
       let textoFinal = '*Asistencia del Día*\n\n';
 
       grupos.forEach(grupo => {
-        const nombreGrupo = grupo.getAttribute('data-grupo');
-        const seleccionados = grupo.querySelectorAll('input[type="checkbox"]:checked');
-        if (seleccionados.length > 0) {
-          textoFinal += `*${nombreGrupo}:*\n`;
-          seleccionados.forEach(cb => {
-            textoFinal += `- ${cb.value}\n`;
-          });
+        const nombreGrupo = grupo.querySelector('.titulo-grupo').textContent.trim();
+        const checks = grupo.querySelectorAll('.contenedor-miembros input:checked');
+        if (checks.length > 0) {
+          textoFinal += `*${nombreGrupo.split(' ')[0]}:*\n`;
+          checks.forEach(cb => textoFinal += `- ${cb.value}\n`);
           textoFinal += '\n';
         }
       });
@@ -186,13 +188,9 @@
       const anio = fecha.getFullYear();
       textoFinal += `Fecha: ${dia}/${mes}/${anio}`;
 
-      if (textoFinal.trim()) {
-        navigator.clipboard.writeText(textoFinal)
-          .then(() => alert('Asistencia copiada:\n\n' + textoFinal))
-          .catch(err => alert('Error al copiar: ' + err));
-      } else {
-        alert('No has marcado ningún nombre.');
-      }
+      navigator.clipboard.writeText(textoFinal)
+        .then(() => alert('Asistencia copiada:\n\n' + textoFinal))
+        .catch(err => alert('Error al copiar: ' + err));
     }
 
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -209,21 +207,9 @@
       });
     }
 
-    checkboxes.forEach(cb => {
-      cb.addEventListener('change', actualizarEstilos);
-    });
-
+    checkboxes.forEach(cb => cb.addEventListener('change', actualizarEstilos));
     actualizarEstilos();
-
-    function toggleGrupo(header) {
-      const contenido = header.nextElementSibling;
-      const icono = header.querySelector('span');
-      const abierto = contenido.style.display === 'block';
-
-      contenido.style.display = abierto ? 'none' : 'block';
-      icono.style.transform = abierto ? 'rotate(0deg)' : 'rotate(90deg)';
-      icono.textContent = abierto ? '⯈' : '⯆';
-    }
   </script>
+
 </body>
 </html>
