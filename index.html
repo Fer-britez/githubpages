@@ -6,86 +6,105 @@
   <title>Asistencia por Grupos de Voces</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      max-width: 600px;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f2f5;
+      padding: 30px;
+      max-width: 700px;
       margin: auto;
-      background-color: #f4f4f4;
     }
 
     h2 {
       text-align: center;
-      color: #333;
+      color: #2c3e50;
       margin-bottom: 30px;
+      font-size: 26px;
     }
 
     .grupo {
-      background: white;
-      padding: 0;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
       overflow: hidden;
+      margin-bottom: 20px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .grupo:hover {
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
     }
 
     .titulo-grupo {
-      background-color: #ddd;
-      padding: 15px;
-      margin: 0;
+      background-color: #3498db;
+      color: white;
+      padding: 15px 20px;
       cursor: pointer;
       user-select: none;
+      font-size: 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 18px;
-      border-radius: 10px 10px 0 0;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    .titulo-grupo:hover {
+      background-color: #2980b9;
+    }
+
+    .titulo-grupo span {
+      font-size: 20px;
+      transition: transform 0.3s;
     }
 
     .contenido-grupo {
-      padding: 15px;
+      padding: 15px 20px;
       display: none;
+      border-top: 1px solid #ddd;
+      background-color: #fcfcfc;
     }
 
     .grupo label {
       display: flex;
       align-items: center;
-      margin: 8px 0;
-      font-size: 17px;
-      padding: 8px 10px;
-      border-radius: 6px;
-      transition: background-color 0.3s;
+      margin: 10px 0;
+      font-size: 16px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: background-color 0.3s, color 0.3s;
     }
 
     .grupo input[type="checkbox"] {
-      margin-right: 10px;
+      margin-right: 12px;
       width: 18px;
       height: 18px;
     }
 
     .grupo label.seleccionado {
-      background-color: #d4edda;
-      color: #155724;
+      background-color: #d1f2eb;
+      color: #145a32;
     }
 
     .grupo label.no-seleccionado {
-      background-color: #f8d7da;
-      color: #721c24;
+      background-color: #f9d6d5;
+      color: #922b21;
     }
 
     button {
-      padding: 14px 20px;
-      font-size: 16px;
+      padding: 15px 25px;
+      font-size: 17px;
       width: 100%;
-      background-color: #28a745;
+      background-color: #2ecc71;
       color: white;
       border: none;
       border-radius: 10px;
       cursor: pointer;
       margin-top: 30px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
-      background-color: #218838;
+      background-color: #27ae60;
     }
   </style>
 </head>
@@ -196,13 +215,14 @@
 
     actualizarEstilos();
 
-    // Mostrar/ocultar grupos
-    function toggleGrupo(elemento) {
-      const contenido = elemento.nextElementSibling;
-      const flecha = elemento.querySelector('span');
-      const visible = contenido.style.display === 'block';
-      contenido.style.display = visible ? 'none' : 'block';
-      flecha.textContent = visible ? '⯈' : '⯆';
+    function toggleGrupo(header) {
+      const contenido = header.nextElementSibling;
+      const icono = header.querySelector('span');
+      const abierto = contenido.style.display === 'block';
+
+      contenido.style.display = abierto ? 'none' : 'block';
+      icono.style.transform = abierto ? 'rotate(0deg)' : 'rotate(90deg)';
+      icono.textContent = abierto ? '⯈' : '⯆';
     }
   </script>
 </body>
