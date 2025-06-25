@@ -5,110 +5,139 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Asistencia por Grupos de Voces</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-      background: linear-gradient(to bottom right, #f0f4f8, #ffffff);
-    }
+<style>
+  * {
+    box-sizing: border-box;
+  }
 
-    h2 {
-      text-align: center;
-      color: #2c3e50;
-      margin-bottom: 30px;
-    }
+<style>
+  * {
+    box-sizing: border-box;
+  }
 
-    .grupo {
-      background: white;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      overflow: hidden;
-    }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    background: linear-gradient(to bottom right, #f0f4f8, #ffffff);
+  }
 
-    .titulo-grupo {
-      background-color: #3498db;
-      color: white;
-      padding: 14px 16px;
-      font-size: 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-    }
+  h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+  }
 
-    .icono {
-      font-family: 'Material Icons';
-      font-size: 24px;
-    }
+  .grupo {
+    background: white;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
 
-    .contenedor-miembros {
-      display: none;
-      padding: 10px 15px;
-    }
+  .titulo-grupo {
+    background-color: #3498db;
+    color: white;
+    padding: 14px 16px;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
 
-    .miembro {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px;
-      border-radius: 8px;
-      margin-top: 8px;
-      transition: background-color 0.3s;
-      background-color: #f8d7da; /* rojo por defecto */
-    }
+  .icono {
+    font-family: 'Material Icons';
+    font-size: 24px;
+  }
 
-    .miembro.verde {
-      background-color: #d4edda; /* verde */
-    }
+  .contenedor-miembros {
+    display: none;
+    padding: 10px 15px;
+  }
 
-    .miembro.amarillo {
-      background-color: #fff3cd; /* amarillo */
-    }
+  .miembro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 8px;
+    background-color: #f8d7da;
+    transition: background-color 0.3s;
+  }
 
+  .miembro.verde {
+    background-color: #d4edda;
+  }
+
+  .miembro.amarillo {
+    background-color: #fff3cd;
+  }
+
+  .nombre {
+    flex: 1;
+    font-weight: 500;
+    margin-right: 8px;
+    font-size: 16px;
+  }
+
+  .acciones {
+    display: flex;
+    gap: 6px;
+  }
+
+  .acciones button {
+    padding: 6px 10px;
+    font-weight: bold;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+    white-space: nowrap;
+  }
+
+  .btn-asistio {
+    background-color: #28a745;
+    color: white;
+  }
+
+  .btn-falto {
+    background-color: #ffc107;
+    color: black;
+  }
+
+  button#copiar-btn {
+    padding: 14px 20px;
+    font-size: 16px;
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 30px;
+  }
+
+  button#copiar-btn:hover {
+    background-color: #218838;
+  }
+
+  @media (max-width: 480px) {
     .nombre {
-      flex: 1;
-      font-weight: 500;
+      font-size: 15px;
     }
 
     .acciones button {
-      margin-left: 6px;
-      padding: 6px 10px;
-      font-weight: bold;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: 0.3s;
+      padding: 4px 6px;
+      font-size: 12px;
     }
+  }
+</style>
 
-    .btn-asistio {
-      background-color: #28a745;
-      color: white;
-    }
-
-    .btn-falto {
-      background-color: #ffc107;
-      color: black;
-    }
-
-    button#copiar-btn {
-      padding: 14px 20px;
-      font-size: 16px;
-      width: 100%;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-top: 30px;
-    }
-
-    button#copiar-btn:hover {
-      background-color: #218838;
-    }
-  </style>
 </head>
 <body>
 
@@ -116,35 +145,32 @@
 
 <div class="grupo">
   <div class="titulo-grupo" onclick="toggleMiembros(this)">Soprano </div>
-  <div class="contenedor-miembros">
-    <script>const soprano = ["Liz", "Analia", "Debora", "Yeruti", "Laura", "Rebeca", "Lilian", "Noemi"];</script>
-  </div>
+  <div class="contenedor-miembros" id="grupo-soprano"></div>
 </div>
 
 <div class="grupo">
   <div class="titulo-grupo" onclick="toggleMiembros(this)">Contralto </div>
-  <div class="contenedor-miembros">
-    <script>const contralto = ["Yamila", "Ana", "Belen", "Shirley", "Milagros", "Nadira", "Araceli", "Marisa"];</script>
-  </div>
+  <div class="contenedor-miembros" id="grupo-contralto"></div>
 </div>
 
 <div class="grupo">
   <div class="titulo-grupo" onclick="toggleMiembros(this)">Tenor </div>
-  <div class="contenedor-miembros">
-    <script>const tenor = ["Enmanuel", "Daniel", "Jeremias", "Javier", "Carlos","Junior"];</script>
-  </div>
+  <div class="contenedor-miembros" id="grupo-tenor"></div>
 </div>
 
 <div class="grupo">
   <div class="titulo-grupo" onclick="toggleMiembros(this)">Bajo </div>
-  <div class="contenedor-miembros">
-    <script>const bajo = ["Fernando", "Maicol", "Samuel", "David", "Dionicio"];</script>
-  </div>
+  <div class="contenedor-miembros" id="grupo-bajo"></div>
 </div>
 
 <button id="copiar-btn" onclick="copiarAsistencia()">Copiar asistencia</button>
 
 <script>
+const soprano = ["Liz", "Analia", "Debora", "Yeruti", "Laura", "Rebeca", "Lilian", "Noemi"];
+const contralto = ["Yamila", "Ana", "Belen", "Shirley", "Milagros", "Nadira", "Araceli", "Marisa"];
+const tenor = ["Enmanuel", "Daniel", "Jeremias", "Javier", "Carlos", "Junior"];
+const bajo = ["Fernando", "Maicol", "Samuel", "David", "Dionicio"];
+
 function toggleMiembros(titulo) {
   const contenedor = titulo.nextElementSibling;
   const icono = titulo.querySelector('.icono');
@@ -163,13 +189,17 @@ function crearMiembroHTML(nombre) {
 }
 
 window.onload = () => {
-  const grupos = { Soprano: soprano, Contralto: contralto, Tenor: tenor, Bajo: bajo };
-  document.querySelectorAll('.grupo').forEach((grupoDiv, i) => {
-    const grupoNombre = Object.keys(grupos)[i];
-    const miembros = grupos[grupoNombre];
-    const contenedor = grupoDiv.querySelector('.contenedor-miembros');
-    miembros.forEach(nombre => contenedor.innerHTML += crearMiembroHTML(nombre));
-  });
+  const grupos = {
+    "grupo-soprano": soprano,
+    "grupo-contralto": contralto,
+    "grupo-tenor": tenor,
+    "grupo-bajo": bajo
+  };
+
+  for (let id in grupos) {
+    const contenedor = document.getElementById(id);
+    grupos[id].forEach(nombre => contenedor.innerHTML += crearMiembroHTML(nombre));
+  }
 
   setTimeout(() => {
     document.querySelectorAll('.miembro').forEach(miembro => {
