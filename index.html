@@ -22,7 +22,6 @@
 
     .grupo {
       background: white;
-      padding: 0;
       margin-bottom: 20px;
       border-radius: 12px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -30,7 +29,6 @@
     }
 
     .titulo-grupo {
-      cursor: pointer;
       background-color: #3498db;
       color: white;
       padding: 14px 16px;
@@ -38,45 +36,64 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      cursor: pointer;
     }
 
-    .material-icons {
+    .icono {
+      font-family: 'Material Icons';
       font-size: 24px;
-      transition: transform 0.3s;
     }
 
     .contenedor-miembros {
-      padding: 15px;
       display: none;
+      padding: 10px 15px;
     }
 
-    .contenedor-miembros label {
+    .miembro {
       display: flex;
       align-items: center;
-      margin: 6px 0;
-      font-size: 16px;
-      padding: 6px 10px;
-      border-radius: 6px;
+      justify-content: space-between;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 8px;
       transition: background-color 0.3s;
+      background-color: #f8d7da; /* rojo por defecto */
     }
 
-    .contenedor-miembros input[type="checkbox"] {
-      margin-right: 10px;
-      width: 18px;
-      height: 18px;
+    .miembro.verde {
+      background-color: #d4edda; /* verde */
     }
 
-    .seleccionado {
-      background-color: #d4edda;
-      color: #155724;
+    .miembro.amarillo {
+      background-color: #fff3cd; /* amarillo */
     }
 
-    .no-seleccionado {
-      background-color: #f8d7da;
-      color: #721c24;
+    .nombre {
+      flex: 1;
+      font-weight: 500;
     }
 
-    button {
+    .acciones button {
+      margin-left: 6px;
+      padding: 6px 10px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-asistio {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .btn-falto {
+      background-color: #ffc107;
+      color: black;
+    }
+
+    button#copiar-btn {
       padding: 14px 20px;
       font-size: 16px;
       width: 100%;
@@ -88,128 +105,149 @@
       margin-top: 30px;
     }
 
-    button:hover {
+    button#copiar-btn:hover {
       background-color: #218838;
     }
   </style>
 </head>
 <body>
 
-  <h2>Asistencia por Grupos de Voces</h2>
+<h2>Asistencia por Grupos de Voces</h2>
 
-  <!-- Grupos -->
-  <div class="grupo">
-    <div class="titulo-grupo" onclick="toggleGrupo(this)">
-      Soprano <span class="material-icons">expand_more</span>
-    </div>
-    <div class="contenedor-miembros">
-      <label><input type="checkbox" value="Liz"> Liz</label>
-      <label><input type="checkbox" value="Analia"> Analia</label>
-      <label><input type="checkbox" value="Debora"> Debora</label>
-      <label><input type="checkbox" value="Yeruti"> Yeruti</label>
-      <label><input type="checkbox" value="Laura"> Laura</label>
-      <label><input type="checkbox" value="Rebeca"> Rebeca</label>
-      <label><input type="checkbox" value="Lilian"> Lilian</label>
-      <label><input type="checkbox" value="Noemi"> Noemi</label>
-    </div>
+<div class="grupo">
+  <div class="titulo-grupo" onclick="toggleMiembros(this)">Soprano </div>
+  <div class="contenedor-miembros">
+    <script>const soprano = ["Liz", "Analia", "Debora", "Yeruti", "Laura", "Rebeca", "Lilian", "Noemi"];</script>
   </div>
+</div>
 
-  <div class="grupo">
-    <div class="titulo-grupo" onclick="toggleGrupo(this)">
-      Contralto <span class="material-icons">expand_more</span>
-    </div>
-    <div class="contenedor-miembros">
-      <label><input type="checkbox" value="Yamila"> Yamila</label>
-      <label><input type="checkbox" value="Ana"> Ana</label>
-      <label><input type="checkbox" value="Belen"> Belen</label>
-      <label><input type="checkbox" value="Shirley"> Shirley</label>
-      <label><input type="checkbox" value="Milagros"> Milagros</label>
-      <label><input type="checkbox" value="Nadira"> Nadira</label>
-      <label><input type="checkbox" value="Araceli"> Araceli</label>
-      <label><input type="checkbox" value="Marisa"> Marisa</label>
-    </div>
+<div class="grupo">
+  <div class="titulo-grupo" onclick="toggleMiembros(this)">Contralto </div>
+  <div class="contenedor-miembros">
+    <script>const contralto = ["Yamila", "Ana", "Belen", "Shirley", "Milagros", "Nadira", "Araceli", "Marisa"];</script>
   </div>
+</div>
 
-  <div class="grupo">
-    <div class="titulo-grupo" onclick="toggleGrupo(this)">
-      Tenor <span class="material-icons">expand_more</span>
-    </div>
-    <div class="contenedor-miembros">
-      <label><input type="checkbox" value="Enmanuel"> Enmanuel</label>
-      <label><input type="checkbox" value="Daniel"> Daniel</label>
-      <label><input type="checkbox" value="Jeremias"> Jeremias</label>
-      <label><input type="checkbox" value="Javier"> Javier</label>
-      <label><input type="checkbox" value="Carlos"> Carlos</label>
-    </div>
+<div class="grupo">
+  <div class="titulo-grupo" onclick="toggleMiembros(this)">Tenor </div>
+  <div class="contenedor-miembros">
+    <script>const tenor = ["Enmanuel", "Daniel", "Jeremias", "Javier", "Carlos","Junior"];</script>
   </div>
+</div>
 
-  <div class="grupo">
-    <div class="titulo-grupo" onclick="toggleGrupo(this)">
-      Bajo <span class="material-icons">expand_more</span>
-    </div>
-    <div class="contenedor-miembros">
-      <label><input type="checkbox" value="Fernando"> Fernando</label>
-      <label><input type="checkbox" value="Maicol"> Maicol</label>
-      <label><input type="checkbox" value="Samuel"> Samuel</label>
-      <label><input type="checkbox" value="David"> David</label>
-      <label><input type="checkbox" value="Dionicio"> Dionicio</label>
-    </div>
+<div class="grupo">
+  <div class="titulo-grupo" onclick="toggleMiembros(this)">Bajo </div>
+  <div class="contenedor-miembros">
+    <script>const bajo = ["Fernando", "Maicol", "Samuel", "David", "Dionicio"];</script>
   </div>
+</div>
 
-  <button onclick="copiarAsistencia()">Copiar asistencia</button>
+<button id="copiar-btn" onclick="copiarAsistencia()">Copiar asistencia</button>
 
-  <script>
-    function toggleGrupo(elemento) {
-      const contenedor = elemento.nextElementSibling;
-      const icono = elemento.querySelector('.material-icons');
-      const estaAbierto = contenedor.style.display === 'block';
+<script>
+function toggleMiembros(titulo) {
+  const contenedor = titulo.nextElementSibling;
+  const icono = titulo.querySelector('.icono');
+  contenedor.style.display = contenedor.style.display === 'block' ? 'none' : 'block';
+  icono.textContent = icono.textContent === 'expand_more' ? 'expand_less' : 'expand_more';
+}
 
-      contenedor.style.display = estaAbierto ? 'none' : 'block';
-      icono.textContent = estaAbierto ? 'expand_more' : 'expand_less';
-    }
+function crearMiembroHTML(nombre) {
+  return `<div class="miembro" data-estado="ninguno" data-nombre="${nombre}">
+    <span class="nombre">${nombre}</span>
+    <div class="acciones">
+      <button class="btn-asistio">Asistió</button>
+      <button class="btn-falto">Faltó Justificadamente</button>
+    </div>
+  </div>`;
+}
 
-    function copiarAsistencia() {
-      const grupos = document.querySelectorAll('.grupo');
-      let textoFinal = '*Asistencia del Día*\n\n';
+window.onload = () => {
+  const grupos = { Soprano: soprano, Contralto: contralto, Tenor: tenor, Bajo: bajo };
+  document.querySelectorAll('.grupo').forEach((grupoDiv, i) => {
+    const grupoNombre = Object.keys(grupos)[i];
+    const miembros = grupos[grupoNombre];
+    const contenedor = grupoDiv.querySelector('.contenedor-miembros');
+    miembros.forEach(nombre => contenedor.innerHTML += crearMiembroHTML(nombre));
+  });
 
-      grupos.forEach(grupo => {
-        const nombreGrupo = grupo.querySelector('.titulo-grupo').textContent.trim();
-        const checks = grupo.querySelectorAll('.contenedor-miembros input:checked');
-        if (checks.length > 0) {
-          textoFinal += `*${nombreGrupo.split(' ')[0]}:*\n`;
-          checks.forEach(cb => textoFinal += `- ${cb.value}\n`);
-          textoFinal += '\n';
-        }
-      });
+  setTimeout(() => {
+    document.querySelectorAll('.miembro').forEach(miembro => {
+      const asistioBtn = miembro.querySelector('.btn-asistio');
+      const faltoBtn = miembro.querySelector('.btn-falto');
 
-      const fecha = new Date();
-      const dia = String(fecha.getDate()).padStart(2, '0');
-      const mes = String(fecha.getMonth() + 1).padStart(2, '0');
-      const anio = fecha.getFullYear();
-      textoFinal += `Fecha: ${dia}/${mes}/${anio}`;
-
-      navigator.clipboard.writeText(textoFinal)
-        .then(() => alert('Asistencia copiada:\n\n' + textoFinal))
-        .catch(err => alert('Error al copiar: ' + err));
-    }
-
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    function actualizarEstilos() {
-      checkboxes.forEach(cb => {
-        const label = cb.parentElement;
-        if (cb.checked) {
-          label.classList.add('seleccionado');
-          label.classList.remove('no-seleccionado');
+      asistioBtn.addEventListener('click', () => {
+        const estado = miembro.dataset.estado;
+        if (estado === 'presente') {
+          miembro.dataset.estado = 'ninguno';
+          miembro.classList.remove('verde');
+          faltoBtn.style.display = 'inline-block';
         } else {
-          label.classList.remove('seleccionado');
-          label.classList.add('no-seleccionado');
+          miembro.dataset.estado = 'presente';
+          miembro.classList.add('verde');
+          miembro.classList.remove('amarillo');
+          faltoBtn.style.display = 'none';
         }
       });
-    }
 
-    checkboxes.forEach(cb => cb.addEventListener('change', actualizarEstilos));
-    actualizarEstilos();
-  </script>
+      faltoBtn.addEventListener('click', () => {
+        const estado = miembro.dataset.estado;
+        if (estado === 'falta') {
+          miembro.dataset.estado = 'ninguno';
+          miembro.classList.remove('amarillo');
+          asistioBtn.style.display = 'inline-block';
+        } else {
+          miembro.dataset.estado = 'falta';
+          miembro.classList.add('amarillo');
+          miembro.classList.remove('verde');
+          asistioBtn.style.display = 'none';
+        }
+      });
+    });
+  }, 100);
+}
+
+function copiarAsistencia() {
+  const grupos = document.querySelectorAll('.grupo');
+  let textoFinal = '*Asistencia del Día*\n\n';
+  let faltaronJustificados = [];
+
+  grupos.forEach(grupo => {
+    const nombreGrupo = grupo.querySelector('.titulo-grupo').textContent.trim();
+    const miembros = grupo.querySelectorAll('.miembro');
+    let presentes = [];
+
+    miembros.forEach(m => {
+      const estado = m.dataset.estado;
+      const nombre = m.dataset.nombre;
+      if (estado === 'presente') presentes.push(nombre);
+      else if (estado === 'falta') faltaronJustificados.push(nombre);
+    });
+
+    if (presentes.length > 0) {
+      textoFinal += `*${nombreGrupo}*\n`;
+      presentes.forEach(n => textoFinal += `- ${n}\n`);
+      textoFinal += '\n';
+    }
+  });
+
+  if (faltaronJustificados.length > 0) {
+    textoFinal += `*Faltaron Justificadamente*\n`;
+    faltaronJustificados.forEach(n => textoFinal += `- ${n}\n`);
+    textoFinal += '\n';
+  }
+
+  const fecha = new Date();
+  const dia = String(fecha.getDate()).padStart(2, '0');
+  const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+  const anio = fecha.getFullYear();
+  textoFinal += `Fecha: ${dia}/${mes}/${anio}`;
+
+  navigator.clipboard.writeText(textoFinal)
+    .then(() => alert('Asistencia copiada:\n\n' + textoFinal))
+    .catch(err => alert('Error al copiar: ' + err));
+}
+</script>
 
 </body>
 </html>
